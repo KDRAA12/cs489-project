@@ -12,18 +12,16 @@ import java.util.List;
 
 @Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @DiscriminatorColumn(name="type",discriminatorType = DiscriminatorType.STRING)
 public abstract class Prescription {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Enumerated(value = EnumType.STRING)
     private PrescriptionType prescriptionType;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<PrescriptionItem> items;
 
     @CreationTimestamp

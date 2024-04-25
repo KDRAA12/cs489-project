@@ -9,29 +9,36 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
-public class MedicServices{
+public class MedicService{
     private final MedicRepository medicRepository;
 
-    private Page<Medic> findAll(Pageable pageable){
+    public Page<Medic> findAll(Pageable pageable){
         return medicRepository.findAll(pageable);
     }
 
-    private Medic findById(Long id){
+    public Medic findById(Long id){
         return medicRepository.findById(id).orElseThrow(NotFoundException::new);
     }
 
-    private Medic save(Medic medic){
+    public Medic save(Medic medic){
         return medicRepository.save(medic);
     }
 
-    private void deleteById(Long id){
+    public List<Medic> save(List<Medic> medics){
+        return medicRepository.saveAll(medics);
+    }
+
+
+    public void deleteById(Long id){
         Medic medic=findById(id);
         medicRepository.delete(medic);
     }
 
-    private Medic update(Long id, Medic medic) {
+    public Medic update(Long id, Medic medic) {
         Medic medic1 = findById(id);
         medic.setId(id);
         return medicRepository.save(medic);

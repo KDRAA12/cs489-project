@@ -1,18 +1,17 @@
-package edu.miu.eprescribtionsystem.models;
+package edu.miu.eprescribtionsystem.dtos;
 
 
-import jakarta.persistence.*;
+import edu.miu.eprescribtionsystem.models.Gender;
+import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-@Entity
-public class Patient {
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Id
+public class PatientDTO {
     private Long id;
     private String firstName;
     private String lastName;
@@ -20,4 +19,5 @@ public class Patient {
     private Gender gender;
     private String email;
     private String phoneNumber;
+
 }

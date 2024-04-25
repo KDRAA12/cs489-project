@@ -14,7 +14,7 @@ import java.util.List;
 @Entity
 public class PrescriptionItem {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String drugName;
     @ManyToOne

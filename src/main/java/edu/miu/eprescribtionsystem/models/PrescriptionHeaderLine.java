@@ -5,16 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TimeOfTake {
+@Entity
+@Data
+public class PrescriptionHeaderLine {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private DurationUnit unit;
-    private float amount;
+    private String text;
+    private Integer lineNumber;
     @Enumerated(value = EnumType.STRING)
-    private DurationUnit durationUnit;
+    private PrescriptionHeaderLinePosition position;
 }
