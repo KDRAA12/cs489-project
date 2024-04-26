@@ -16,28 +16,31 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class PatientController {
     private final PatientService patientService;
-//    private final PatientMapper patientMapper;
+    private final PatientMapper patientMapper;
     @GetMapping
-    public Page<Patient> getAll(Pageable pageable){
-        return  patientService.findAll(pageable);
-//                .map(patientMapper::mapFromDTO);
+    public Page<PatientDTO> getAll(Pageable pageable){
+        return  patientService.findAll(pageable)
+                .map(patientMapper::mapToDTO);
     }
 
 
     @GetMapping("/{id}")
-    public Patient getOne(Long id){
-        return patientService.findById(id);
+    public PatientDTO getOne(Long id){
+        return  patientMapper.mapToDTO(patientService.findById(id));
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Patient patient(Patient patient){
-        return patientService.save(patient);
+    public PatientDTO patient(PatientDTO patient){
+        return patientMapper.mapToDTO(patientService.save(
+                patientMapper.mapFromDTO(patient)
+        ));
     }
 
     @PutMapping("/{id}")
-    public Patient update(Long id, Patient patient){
-        return patientService.update(id,patient);
+    public PatientDTO update(Long id, PatientDTO patient){
+        return patientMapper.mapToDTO(patientService.update(id,
+                patientMapper.mapFromDTO(patient)));
     }
 
     @DeleteMapping("/{id}")
