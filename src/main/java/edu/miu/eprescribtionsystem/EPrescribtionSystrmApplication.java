@@ -17,9 +17,9 @@ public class EPrescribtionSystrmApplication {
     }
 
 
-    @Bean
-    public CommandLineRunner init(){
-        return args -> dataGenerator.initializeDatabase();
-    }
+//    @Bean
+//    public CommandLineRunner init(){
+//        return args -> dataGenerator.initializeDatabase();
+//    }
 
 }
